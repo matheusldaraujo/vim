@@ -96,9 +96,9 @@
 if !exists("$CREAM")
 
 	" mappings
-	imap <silent> <F4> <C-o>:call Cream_list_toggle("i")<CR>
-	vmap <silent> <F4> :<C-u>call Cream_list_toggle("v")<CR>
-	nmap <silent> <F4>      :call Cream_list_toggle("n")<CR>
+	imap <silent> <F10> <C-o>:call Cream_list_toggle("i")<CR>
+	vmap <silent> <F10>:<C-u>call Cream_list_toggle("v")<CR>
+	nmap <silent> <F10>     :call Cream_list_toggle("n")<CR>
 
 	" initialize on Buffer enter/new
 	autocmd BufNewFile,BufEnter * call Cream_list_init()
