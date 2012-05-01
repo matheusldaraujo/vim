@@ -1,0 +1,255 @@
+----------VIM-Resumo de Funcionalidades--------Matheus Pack 1.0----------------
+===============================================================================
+Pacotes usados:
+
+cvim                                   -Ambiente para programacao em C.
+mru.vim                                -Facil acesso a arquivos usados.
+supertab.vba                           -Code Completion using Tab
+showmarks.vim 						   -Mostrar marcas com Control+m
+sqlcomplete.vim                        -Suporte de sintaxe para SQL
+SearchComplete.vim                     -Code Completion no modo de busca
+a.vim                                  -Mudar entre header e codigo fonte usando :A
+
+
+"============================================================================"
+------------------------INSTALALLATION---------------------------------------
+1)Instalar exuberant-ctags
+	*Caso nao possua acesso ao sudo ou root, compile o source code:
+	./configure --prefix=PATH       #PATH de preferencia $HOME/VIM/ctags-5.8
+	make
+	make install
+	#CONFIGURE A VARIA PATH para achar este novo caminho, exemplo:
+	export PATH=${PATH}:$HOME/VIM/ctags-5.8/ #Coloque isso no seu .bashrc
+"============================================================================"
+
+-------------------------------------CVIM--------------------------------------
+]Editar o arquivo ../c-support/templates/Templates para personalizar dados pessoais de criacao
+
+\sd       do { } while                        (n,v,i)
+\sf       for                                 (n,i)
+\sfo      for { }                             (n,v,i)
+\si       if                                  (n,i)
+\sif      if { }                              (n,v,i)
+\sie      if else                             (n,v,i)
+\sife     if { } else { }                     (n,v,i)
+\se       else { }                            (n,v,i)
+\sw       while                               (n,i)
+\swh      while { }                           (n,v,i)
+\ss       switch                              (n,v,i)
+\sc       case                                (n,i)
+\s{ \sb   { }                                 (n,v,i)
+
+\cl   -> Comentario no fim da linha
+\cj   -> Manda o comentario para o fim da linha
+\cs   -> Configura em qual coluna o comentario do fim da linha estara
+\cfr  -> Cria um quadro de comentario
+\cfu  -> Cria um comentario para a funcao
+\cme  -> Cria um comentario para um metodo de uma classe
+\ccl  -> Descricao de uma classe
+\cfdi -> Descricao de um arquivo que possui implementacoes
+\cfdh -> Descricao de um arquivo header
+
+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
+Modifique as variaveis globais a seguir para modificar seus efeitos:
+Para modificar basta redefinilas no .vimrc
+-MODIFICAR CONFIGURACOES:
+	Compilador
+	cvim
+	arquivos do cvim
+	tudo em que o cvim se baseia
+
+  ----------------------------------------------------------------------------
+  GLOBAL VARIABLE           DEFAULT VALUE                    TAG (see below)
+  ----------------------------------------------------------------------------
+  g:C_GlobalTemplateFile     plugin_dir.'c-support/templates/Templates'
+  g:C_LocalTemplateFile      $HOME.'/.vim/c-support/templates/Templates'
+  g:C_TemplateOverwrittenMsg 'yes'
+  g:C_Ctrl_j                 'on'
+
+  g:C_CodeSnippets           plugin_dir.'/c-support/codesnippets/'
+  g:C_Dictionary_File        ''
+  g:C_LoadMenus              'yes'
+  g:C_MenuHeader             'yes'
+  g:C_OutputGvim             'vim'
+  g:C_Root                   '&C\/C\+\+.'
+  g:C_XtermDefaults          '-fa courier -fs 12 -geometry 80x24'
+  g:C_Printheader            "%<%f%h%m%<  %=%{strftime('%x %X')}     Page %N"
+  g:C_MapLeader              '\'
+  g:C_GuiSnippetBrowser      'gui'
+  g:C_GuiTemplateBrowser     'gui'
+
+  Linux/UNIX:
+   g:C_ObjExtension          '.o'
+   g:C_ExeExtension          ''
+   g:C_CCompiler             'gcc'
+   g:C_CplusCompiler         'g++'
+   g:C_Man                   'man'
+  Windows:
+   g:C_ObjExtension          '.obj'
+   g:C_ExeExtension          '.exe'
+   g:C_CCompiler             'gcc.exe'
+   g:C_CplusCompiler         'g++.exe'
+   g:C_Man                   'man.exe'
+  g:C_VimCompilerName        gcc
+  g:C_CFlags                 '-Wall -g -O0 -c'
+  g:C_LFlags                 '-Wall -g -O0'
+  g:C_Libs                   '-lm'
+  g:C_LineEndCommColDefault  49
+  g:C_CExtension             'c'
+  g:C_TypeOfH                'cpp'
+  g:C_SourceCodeExtensions   'c cc cp cxx cpp CPP c++ C i ii'
+
+  g:C_CodeCheckExeName       'check'
+  g:C_CodeCheckOptions       '-K13'
+
+The variable plugin_dir will automatically be set to one of the following values:
+  $HOME.'/.vim/'        for Linux/Unix
+  $VIM.'/vimfiles/'     for Windows
+
+  ----------------------------------------------------------------------------
+
+ 1. group: g:C_GlobalTemplateFile : Sets the master template file (see|csupport-templates|)
+           g:C_LocalTemplateFile  : Sets the local template file  (see|csupport-templates|)
+           g:C_TemplateOverwrittenMsg : message if template is overwritten
+           g:C_Ctrl_j                 : hotkey Ctrl-j  'on'/'off' (see|csupport-Ctrl-j|)
+
+ 2. group: g:C_CodeSnippets       : The name of the code snippet directory
+                                   (see |csupport-snippets|).
+           g:C_Dictionary_File    : The name(s) of the dictionary file(s) used for
+                                    word completion (see also |csupport-dictionary|)
+           g:C_LoadMenus          : Load menus and mappings ("yes", "no") at startup.
+           g:C_MenuHeader         : Switch the submenu header on/off.
+           g:C_OutputGvim         : when program is running output goes to the vim
+                                    command line ("vim"), to a buffer ("buffer") or to
+                                    an xterm ("xterm").
+           g:C_Root               : The name of the root menu entry of this plugin
+                                           (see |csupport-custom-root|).
+           g:C_XtermDefaults      : the xterm defaults
+           g:C_Printheader        : hardcopy: definition of the page header
+           g:C_MapLeader          : the map leader for hotkeys (see|csupport-usage-vim|)
+           g:C_GuiSnippetBrowser  : code snippet browser: 'gui', 'commandline'
+           g:C_GuiTemplateBrowser : code template browser: 'gui', 'explorer', 'commandline' 
+ 
+ 3. group: g:C_CExtension             : Extension of C files. Everything else is C++.
+           g:C_TypeOfH                : filetype of header files with extension 'h' (c,cpp)
+           g:C_SourceCodeExtensions   : filename extensions for C/C++
+                                        implementation files
+           g:C_CCompiler              : The name of the C compiler.
+           g:C_CplusCompiler          : The name of the C++ compiler.
+           g:C_VimCompilerName        : the compiler name used by :compiler
+           g:C_Man                    : The name of the man utility.
+           g:C_CFlags                 : Compiler flags used for a compilation.
+           g:C_LFlags                 : Compiler flags used for linkage.
+           g:C_Libs                   : Libraries to link with.
+           g:C_ObjExtension           : C/C+ file extension for objects
+                                        (leading point required if not empty)
+           g:C_ExeExtension           : C/C+ file extension for executables
+                                        (leading point required if not empty)
+           g:C_LineEndCommColDefault  : Default starting column for end-of-line comments.
+           g:C_CodeCheckExeName       : The name of the CodeCheck (TM) executable
+                                        (the default is 'check')
+           g:C_CodeCheckOptions       : Default options for CodeCheck (TM)
+                                       (see |csupport-run-codecheck|).
+
+
+
+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_
+
+-------------------------------------------------------------------------------
+===============================================================================
+-------------------------ctags.vim---------------------------------------------
+Funcionalidades:
+:ta funcao  		->O cursor vai para a definicao da funcao
+CTRL+] 				->O cursor vai para a definicao da funcao onde o cursor esta posicionado
+CTRL+t 				->O cursor volta para onde estava antes de pular para a definicao da funcao
+:ta /^nome 			->Navega entra as funcoes que comecam com nome
+:tn 				->Proxima tag na lista
+:tp 				->Tag anterior na lista
+:tf 				->Primeira tag da lista
+:tl 				->Ultima tag da lista
+
+===============================================================================
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+----------------------------Outros comandos------------------------------------
+#Repetir n vezes o comando basta colocar o numero n antes de cada comando a seguir
+#Desativar algo, :set no[algo], contrario de :set algo.
+#Usar o vimball: vim nomedoarquivo.vba; :so % . 
+
+#Variaveis do sistema-PATH e exemplo
+:echo $PATH            ->Imprime PATCH
+:let caminho=$PATH     ->A variavel do vim caminho assume a variavel do sistema PATH  
+:let $PATH='/foo:/bar' ->A variavel do sistema PATH assume o valor '/foo:/bar'
+
+#Executar funcao ao iniciar o vim e ao fechar o fim
+autocmd VimEnter * call [nomedafuncao()]
+autocmd VimLeave * call [nomedafuncao()]
+
+Default Mode:
+
+{             ->Manda o cursor para o inicio do paragrafo
+}             ->Manda o cursor para o final do paragrafo
+g,            ->Volta para o local da ultima mudanca realizada
+g;            ->Volta para o g, anterior
+)             ->Inicio da frase
+)             ->Final da Frase 
+w             ->Incio da proxima paralavra
+b             ->Final da palavra anterior
+e             ->Fim da Atual palavra
+:buffers      ->Mostrar arquivos abertos
+:bnext        ->Proximo arquivo
+:bprevious    ->Arquivo anterior
+?palavra      ->Busca 'palavra' apartir do cursor para o inicio do texto
+/palavra      ->Busca 'palavra' apartir do cursor para o fim do texto
+n             ->Apos usar ? ou / o cursor vai para a proxima palavra que bate com 'palavra'
+N             ->Muda o sentido da busca utilizando n
+?? ou //      ->Realiza a busca novamente
+* ou #        ->Busca a palavra onde o cursor esta no texto
+g* ou g#      ->Busca a parte da palavra em que o cursor esta no texto
+m[mark]       ->Marcar parte do texto, a marca sera [mark], usar uma letra do alfabeto maiuscula ou minuscula. Maiuscula nao sera deletada. Minuscula sera deletada.
+'[mark]       ->Vai para o inicio da linha da marca [mark]
+`[mark]       ->Vai para o local da exato da marca [mark]
+:delmarks!    ->Deleta todas as marcas
+:delmarks a-c ->Deleta marcas de [a] a [c]
+:marks        ->Mostra marcas
+L             ->Fim da pagina
+H             ->Inicio da pagina
+gg             ->Manda o cursor par o inicio do arquivo 
+G             ->Manda o cursor par o fim do arquivo
+
+Coding Mode:
+][    ->Voce esta em uma funcao e quer ir para a proxima funcao
+[]    ->Voce esta em uma funcao e quer ir para a funcao anterior
+[{    ->Ir para o inicio do bloco
+]}    ->Ir para o fim do bloco
+[/    ->Ir para o bloco comentado anterior
+]\    ->Ir para o bloco comentado proximo
+gd    ->Go Definition - Ir para a primeira ocorrencia de uma variavel na sessao corrente
+gD    ->Go Definition - Ir para a primeira ocorrencia de uma variavel no arquivo
+gf    ->Go Filie -> Vai para o arquivo cujo o nome e aonde o cursor esta
+
+:s,foo/bar/baz,foo/bar/boz,c ->Substitui foo/bar/baz, por foo/bar/boz, o c significa que sera pedido permissao
+
+Manipulacao de arquivo:
+:e Abrir um novo arquivo
+<CTRL>+Left and <CTRL>+Right ->Navega pelos arquivos abertos
+
+
+Edit Mode:
+Insert Mode:
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+===============================================================================
+-------------------------SuperTab----------------------------------------------
+
+
+===============================================================================
+-------------------------------------------------------------------------------
+
+
+
