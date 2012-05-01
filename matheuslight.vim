@@ -57,35 +57,29 @@ hi String ctermfg=lightred
 	"let g:C_SourceCodeExtensions  = 'c cc cp cxx cpp CPP c++ C i ii'
 	""
 
+"Make .zcml to .xml highlights"
+au BufNewFile,BufRead *.zcml set filetype=xml
+
 "Load auto comments with <C-C> <C-X>"
-:so $HOME/VIM/comments.vim
+:so $HOME/GitVim/comments.vim
 
 "Load auto close parenteses, bracket, etc"
-:so $HOME/VIM/autoclose.vim
+:so $HOME/GitVim/autoclose.vim
 
 "Load MRU-Most Recently Used-file
-:so $HOME/VIM/mru.vim
+:so $HOME/GitVim/mru.vim
 
 "Load ShowMarks"
-:so $HOME/VIM/showmarks.vim
+:so $HOME/GitVim/showmarks.vim
 
 "Load Code Completion on Searching mode"
-:so $HOME/VIM/SearchComplete.vim
+:so $HOME/GitVim/SearchComplete.vim
 
 "Load a(switcher to/from && from/to source/header file) HotKey: :A"
-:so $HOME/VIM/a.vim
+:so $HOME/GitVim/a.vim
 
 "Load show invisivle caracter "
-:so $HOME/VIM/cream-showinvisibles.vim 
-
-
-"Load MiniTabExplorer"
-""let g:miniBufExplMapWindowNavArrows = 1
-"":so $HOME/VIM/minibufexpl.vim
-""nmap <C-F10> :TMiniBufExplorer<CR>
-
-
-
+:so $HOME/GitVim/cream-showinvisibles.vim 
 
 "Load CTAGS Global Variables"
     	:let g:ctags_path='/home/matheus/VIM/ctags-5.8/bin/'
@@ -96,7 +90,7 @@ hi String ctermfg=lightred
 
 
 "Load ctags"
-:so $HOME/VIM/ctags.vim
+:so $HOME/GitVim/ctags.vim
 
 "Configure ctags atualization with <ctags-F12>"
 	nmap <C-F12> :call Ctags_atualiza()<CR>
