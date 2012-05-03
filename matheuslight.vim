@@ -40,7 +40,7 @@ hi String ctermfg=lightred
 	"let g:C_LoadMenus      				= 'yes'
 	"let g:C_MenuHeader     				= 'yes'
 	"let g:C_OutputGvim            = 'vim'
-	"let g:C_Printheader           = "%<%f%h%m%<  %=%{strftime('%x %X')}     Page %N"
+	"let g:C_Printheader           = "%<%f%h%m%<  %=%{strftime('%x %X')}\6     Page %N"
 	"let g:C_Root  	       				= '&C\/C\+\+.'           " the name of the root menu of this plugin
 	"let g:C_TypeOfH               = 'cpp'
 	"let g:C_Wrapper               = s:plugin_dir.'c-support/scripts/wrapper.sh'
@@ -57,8 +57,24 @@ hi String ctermfg=lightred
 	"let g:C_SourceCodeExtensions  = 'c cc cp cxx cpp CPP c++ C i ii'
 	""
 
+"Shift-Y copy Shift-P paste inter-terminals"
+"copy the current visual selection to ~/.vbuf
+vmap <S-y> :w! /tmp/vimbuf<CR>
+""copy the current line to the buffer file if no visual selection
+nmap <S-y> :.w! /tmp/vimbuf<CR>
+"paste the contents of the buffer file if no visual selection
+nmap <S-p> :r /tmp/vimbuf<CR>"
+"paste the contents of the buffer file if visual selection
+vmap <S-p> :r /tmp/vimbuf<CR>"
+
 "Make .zcml to .xml highlights"
 au BufNewFile,BufRead *.zcml set filetype=xml
+
+"OmniComplete"
+set ofu=syntaxcomplete#Complete
+
+"Python Suport"
+:so $HOME/GitVim/python3.0.vim
 
 "Load auto comments with <C-C> <C-X>"
 :so $HOME/GitVim/comments.vim
@@ -374,7 +390,7 @@ function Session_paste(command)
 	nmap <S-F8> :sign unplace<CR>
 
 "Tab key works on normal mode"
-nmap <tab> i<tab>
+""nmap <tab> i<tab>
 
 "-------------------------------------------------------------------------------
 "  Add quick command
@@ -489,23 +505,23 @@ set hlsearch
 	endif
 
 "Configure SuperTab"
-let g:SuperTabDefaultCompletionType = "context"
+""let g:SuperTabDefaultCompletionType = "context"
 
 "Configure intelligent tab"
-	function! SuperCleverTab()
-		if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-			return "\<Tab>"
-		else
-			if &omnifunc != ''
-				return "\<C-X>\<C-O>"
-			elseif &dictionary != ''
-				return "\<C-K>"
-			else
-				return "\<C-N>"
-			endif
-		endif
-	endfunction
-	inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+	"function! SuperCleverTab()
+		"if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+			"return "\<Tab>"
+		"else
+			"""""""if &omnifunc != ''
+				"""""""return "\<C-X>\<C-O>"
+			"""""""elseif &dictionary != ''
+				"""""""return "\<C-K>"
+			"""""""else
+				"""""""return "\<C-N>"
+			"""""""endif
+		"endif
+	"endfunction
+	"inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
 "Ignorate Case Sensitive"
 ":set noignorecase caso contrario"
