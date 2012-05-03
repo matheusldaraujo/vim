@@ -426,6 +426,7 @@ set hlsearch
 "Identation"
 	:set tabstop=4    "Quantas colunas vale um tab" 
 	:set shiftwidth=4 "Quantas colunas para a identacao"
+    :set expandtab "Faz com que tabs sejam espaços, para real tabs é necessario <C-v><tab>"
 
 "Language dependent identation"
 ":filetype indent on
