@@ -59,19 +59,22 @@ hi String ctermfg=lightred
 
 "Shift-Y copy Shift-P paste inter-terminals"
 "copy the current visual selection to ~/.vbuf
-vmap <S-y> :w! /tmp/vimbuf<CR>
+vmap <S-y> :call CopyExternal()<CR>
 ""copy the current line to the buffer file if no visual selection
-nmap <S-y> :.w! /tmp/vimbuf<CR>
+nmap <S-y> :call CopyExternal()<CR>
 "paste the contents of the buffer file if no visual selection
 nmap <S-p> :r /tmp/vimbuf<CR>"
 "paste the contents of the buffer file if visual selection
 vmap <S-p> :r /tmp/vimbuf<CR>"
 
+function CopyExternal()
+    :'<,'>w! /tmp/vimbuf
+	call system("cat /tmp/vimbuf | xclip")	
+	call system("cat /tmp/vimbuf | xclip -selection 'clipboard'")
+endfunction
+
 "Make .zcml to .xml highlights"
 au BufNewFile,BufRead *.zcml set filetype=xml
-
-"OmniComplete"
-set ofu=syntaxcomplete#Complete
 
 "Python Suport"
 :so $HOME/GitVim/python3.0.vim
@@ -98,8 +101,8 @@ set ofu=syntaxcomplete#Complete
 :so $HOME/GitVim/cream-showinvisibles.vim 
 
 "Load CTAGS Global Variables"
-    	:let g:ctags_path='/home/matheus/VIM/ctags-5.8/bin/'
-    	:let g:ctags_args='-I __declspec+'
+   	:let g:ctags_path='/home/matheus/VIM/ctags-5.8/bin/'
+   	:let g:ctags_args='-I __declspec+'
 	:let g:ctags_title=1 
 	:let g:ctags_statusline=0
 	:let generate_tags=1 
@@ -390,7 +393,7 @@ function Session_paste(command)
 	nmap <S-F8> :sign unplace<CR>
 
 "Tab key works on normal mode"
-""nmap <tab> i<tab>
+nmap <tab> i<tab>
 
 "-------------------------------------------------------------------------------
 "  Add quick command
