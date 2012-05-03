@@ -444,6 +444,8 @@ set hlsearch
 	:hi String cterm=NONE ctermfg=LightRed	
 	:hi Constant cterm=NONE ctermfg=LightRed 
 	:hi Comment cterm=bold ctermfg=LightGreen term=bold 
+    :hi PmenuSel ctermfg=Black
+    :hi PmenuSbar ctermfg=Black
 
 	"":nnoremap <Leader>c :set cursorline!<CR>
 	:hi Normal cterm=NONE  ctermfg=7
