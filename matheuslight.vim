@@ -538,10 +538,16 @@ set hlsearch
 	set foldnestmax=10      "deepest fold is 10 levels
 	"set nofoldenable        "dont fold by default
 	set foldlevel=1         "this is just what i use
+    map <S-w> :foldclose<CR>
+    map <C-w> :foldopen<CR>
 
 "Set save last exibition (folding included)"
    au BufWinLeave * silent  mkview
    au BufWinEnter silent * silent loadview
+
+"control + space auto complete"
+inoremap <Nul> <C-n>
+
 
 "==================================="
 "----C-vim global variables---------"
