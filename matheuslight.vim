@@ -98,7 +98,10 @@ au BufNewFile,BufRead *.zcml set filetype=xml
 :so $HOME/GitVim/a.vim
 
 "Load show invisivle caracter "
-:so $HOME/GitVim/cream-showinvisibles.vim 
+:so $HOME/GitVim/cream-showinvisibles.vim
+
+"Load xml support"
+:so $HOME/GitVim/xml.vim 
 
 "Load CTAGS Global Variables"
    	:let g:ctags_path='/home/matheus/VIM/ctags-5.8/bin/'
