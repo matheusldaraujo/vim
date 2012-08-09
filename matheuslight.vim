@@ -458,7 +458,7 @@ set hlsearch
 	:highlight LineNr ctermbg=darkgray
 
 	"Marck highlight error after column 73"
-	:match ErrorMsg /\%>73v.\+/
+    ":match ErrorMsg /\%>73v.\+/
 
 
 "Don't break line"
